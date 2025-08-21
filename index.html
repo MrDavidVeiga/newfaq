@@ -2,62 +2,199 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>FAQ Moderno</title>
-<link rel="stylesheet" href="faq.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ Moderno - RH</title>
+<style>
+/* Body */
+body {
+  font-family: Montserrat, sans-serif;
+  margin:0;
+  padding:20px;
+  color:#333;
+  background:transparent;
+  overflow-x:hidden; /* impede scroll horizontal */
+}
+
+/* Container FAQ */
+#faqTabs {
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  padding:0 10px;
+}
+
+/* Abas */
+#faqTabs .faq-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap:5px;
+  margin-bottom:20px;
+}
+#faqTabs .faq-tab {
+  padding:10px 5px;
+  background:#002B5A;
+  color:#fff;
+  border-radius:13px 13px 0 0;
+  cursor:pointer;
+  transition:background 0.3s;
+  flex:1 1 auto;
+  min-width:0; /* evita overflow */
+  text-align:center;
+  user-select:none;
+}
+#faqTabs .faq-tab.is-active { background:#4c6c8d; }
+
+/* Seções FAQ */
+#faqTabs .faq-section {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto 20px auto;
+  display:none;
+}
+#faqTabs .faq-section.is-active { display:block; }
+
+/* Toggles */
+#faqTabs .faq-toggle {
+  background:#fff;
+  padding:15px 20px;
+  margin-bottom:10px;
+  border-radius:10px;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+  cursor:pointer;
+  position:relative;
+  transition:transform 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+#faqTabs .faq-toggle:hover { transform:translateX(5px); }
+#faqTabs .faq-toggle::after {
+  content:'+';
+  position:absolute;
+  right:20px;
+  font-size:18px;
+  transition:transform 0.3s;
+}
+#faqTabs .faq-toggle.is-open::after { transform:rotate(45deg); }
+
+#faqTabs .faq-content {
+  width:100%;
+  box-sizing:border-box;
+  max-height:0;
+  overflow:hidden;
+  background:#f0f4f8;
+  padding:0 20px;
+  border-radius:0 0 10px 10px;
+  margin-bottom:10px;
+  opacity:0;
+  transition:max-height 0.4s ease,padding 0.4s ease,opacity 0.4s ease;
+}
+#faqTabs .faq-content.is-visible { padding:15px 20px; max-height:500px; opacity:1; }
+
+/* Mobile */
+@media(max-width:400px){
+  #faqTabs .faq-tabs{ flex-direction: column; gap:0; }
+  #faqTabs .faq-tab{ border-radius:8px 8px 0 0; padding:10px 5px; }
+}
+</style>
 </head>
 <body>
 
-<div class="tabs">
-    <div class="tab active" data-target="candidato">Candidato</div>
-    <div class="tab" data-target="empresa">Empresa</div>
-    <div class="tab" data-target="gerais">Gerais</div>
+<div id="faqTabs">
+  <div class="faq-tabs">
+    <div class="faq-tab is-active" data-target="faq-candidato">Candidato</div>
+    <div class="faq-tab" data-target="faq-empresa">Empresa</div>
+    <div class="faq-tab" data-target="faq-gerais">Gerais</div>
+  </div>
+
+  <div id="faq-candidato" class="faq-section is-active">
+    <div class="faq-toggle">Como me inscrevo em uma vaga?</div>
+    <div class="faq-content">Basta acessar a página de vagas, selecionar a oportunidade desejada e preencher o formulário com seus dados e currículo.</div>
+
+    <div class="faq-toggle">Preciso pagar alguma taxa para participar do processo seletivo?</div>
+    <div class="faq-content">Não. Nossos serviços para candidatos são 100% gratuitos.</div>
+
+    <div class="faq-toggle">Como saberei se meu currículo foi recebido?</div>
+    <div class="faq-content">Após o envio, você receberá uma confirmação por e-mail com a cópia de suas respostas.</div>
+
+    <div class="faq-toggle">Posso me inscrever em mais de uma vaga?</div>
+    <div class="faq-content">Sim! Você pode se candidatar a quantas vagas quiser, desde que atenda aos requisitos.</div>
+
+    <div class="faq-toggle">Quanto tempo demora para eu ter uma resposta?</div>
+    <div class="faq-content">O tempo pode variar conforme a empresa contratante. Mantemos os candidatos informados sobre cada etapa do processo.</div>
+  </div>
+
+  <div id="faq-empresa" class="faq-section">
+    <div class="faq-toggle">Como contratar os serviços de recrutamento e seleção?</div>
+    <div class="faq-content">Entre em contato pelo nosso formulário de contato ou pelo WhatsApp disponível no site. Nossa equipe fará um diagnóstico da sua necessidade.</div>
+
+    <div class="faq-toggle">Vocês atendem empresas de qualquer porte ou segmento?</div>
+    <div class="faq-content">Sim. Adaptamos nossas soluções de RH para pequenas, médias e grandes empresas, em diversos setores.</div>
+
+    <div class="faq-toggle">O que está incluso no processo de recrutamento e seleção?</div>
+    <div class="faq-content">Desde a divulgação da vaga, triagem de currículos, entrevistas e testes, até a apresentação da shortlist de candidatos qualificados.</div>
+
+    <div class="faq-toggle">Vocês também oferecem treinamentos e desenvolvimento?</div>
+    <div class="faq-content">Sim! Criamos programas personalizados de treinamento, capacitação e desenvolvimento de lideranças.</div>
+
+    <div class="faq-toggle">Qual o prazo médio para o preenchimento de uma vaga?</div>
+    <div class="faq-content">Depende do nível da vaga e do perfil buscado, mas em média os processos levam de 15 a 30 dias.</div>
+  </div>
+
+  <div id="faq-gerais" class="faq-section">
+    <div class="faq-toggle">Onde vocês estão localizados?</div>
+    <div class="faq-content">Atendemos de forma online e presencial em Garanhuns-PE.</div>
+
+    <div class="faq-toggle">Como entro em contato com a equipe de RH?</div>
+    <div class="faq-content">Você pode falar com a gente pelo formulário de contato do site, WhatsApp ou e-mail.</div>
+
+    <div class="faq-toggle">Vocês oferecem consultoria completa de RH?</div>
+    <div class="faq-content">Sim. Além de recrutamento e seleção, atuamos com treinamento, desenvolvimento e outras soluções sob medida para empresas.</div>
+  </div>
 </div>
 
-<div id="candidato" class="faq-section active">
-    <div class="toggle">Como me inscrevo em uma vaga?</div>
-    <div class="toggle-content">Basta acessar a página de vagas, selecionar a oportunidade desejada e preencher o formulário com seus dados e currículo.</div>
+<script>
+(function(){
+  const container = document.getElementById('faqTabs');
+  if(!container) return;
 
-    <div class="toggle">Preciso pagar alguma taxa para participar do processo seletivo?</div>
-    <div class="toggle-content">Não. Nossos serviços para candidatos são 100% gratuitos.</div>
+  const tabs = container.querySelectorAll('.faq-tab');
+  const sections = container.querySelectorAll('.faq-section');
 
-    <div class="toggle">Como saberei se meu currículo foi recebido?</div>
-    <div class="toggle-content">Após o envio, você receberá uma confirmação por e-mail com a cópia de suas respostas.</div>
+  tabs.forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      tabs.forEach(t=>t.classList.remove('is-active'));
+      sections.forEach(s=>s.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      const target = container.querySelector('#'+tab.dataset.target);
+      if(target){
+        target.classList.add('is-active');
+        target.querySelectorAll('.faq-toggle').forEach(t=>{
+          t.classList.remove('is-open');
+          const c = t.nextElementSibling;
+          if(c) c.classList.remove('is-visible');
+        });
+      }
+    });
+  });
 
-    <div class="toggle">Posso me inscrever em mais de uma vaga?</div>
-    <div class="toggle-content">Sim! Você pode se candidatar a quantas vagas quiser, desde que atenda aos requisitos.</div>
+  container.addEventListener('click', e=>{
+    const t = e.target.closest('.faq-toggle');
+    if(!t || !container.contains(t)) return;
+    const section = t.closest('.faq-section');
+    section.querySelectorAll('.faq-toggle').forEach(other=>{
+      if(other!==t){
+        other.classList.remove('is-open');
+        const c = other.nextElementSibling;
+        if(c) c.classList.remove('is-visible');
+      }
+    });
+    t.classList.toggle('is-open');
+    const content = t.nextElementSibling;
+    if(content) content.classList.toggle('is-visible');
+  });
+})();
+</script>
 
-    <div class="toggle">Quanto tempo demora para eu ter uma resposta?</div>
-    <div class="toggle-content">O tempo pode variar conforme a empresa contratante. Mantemos os candidatos informados sobre cada etapa do processo.</div>
-</div>
-
-<div id="empresa" class="faq-section">
-    <div class="toggle">Como contratar os serviços de recrutamento e seleção?</div>
-    <div class="toggle-content">Entre em contato pelo nosso formulário de contato ou pelo WhatsApp disponível no site. Nossa equipe fará um diagnóstico da sua necessidade.</div>
-
-    <div class="toggle">Vocês atendem empresas de qualquer porte ou segmento?</div>
-    <div class="toggle-content">Sim. Adaptamos nossas soluções de RH para pequenas, médias e grandes empresas, em diversos setores.</div>
-
-    <div class="toggle">O que está incluso no processo de recrutamento e seleção?</div>
-    <div class="toggle-content">Desde a divulgação da vaga, triagem de currículos, entrevistas e testes, até a apresentação da shortlist de candidatos qualificados.</div>
-
-    <div class="toggle">Vocês também oferecem treinamentos e desenvolvimento?</div>
-    <div class="toggle-content">Sim! Criamos programas personalizados de treinamento, capacitação e desenvolvimento de lideranças.</div>
-
-    <div class="toggle">Qual o prazo médio para o preenchimento de uma vaga?</div>
-    <div class="toggle-content">Depende do nível da vaga e do perfil buscado, mas em média os processos levam de 15 a 30 dias.</div>
-</div>
-
-<div id="gerais" class="faq-section">
-    <div class="toggle">Onde vocês estão localizados?</div>
-    <div class="toggle-content">Atendemos de forma online e presencial em Garanhuns-PE.</div>
-
-    <div class="toggle">Como entro em contato com a equipe de RH?</div>
-    <div class="toggle-content">Você pode falar com a gente pelo formulário de contato do site, WhatsApp ou e-mail.</div>
-
-    <div class="toggle">Vocês oferecem consultoria completa de RH?</div>
-    <div class="toggle-content">Sim. Além de recrutamento e seleção, atuamos com treinamento, desenvolvimento e outras soluções sob medida para empresas.</div>
-</div>
-
-<script src="faq.js"></script>
 </body>
 </html>
